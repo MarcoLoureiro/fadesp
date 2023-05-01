@@ -1,0 +1,127 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "FadespApi",
+    "dateExported": "2023-05-01T18:47:23.644Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "e5e08cbc-3cbc-40d1-a9ad-7afc2525ae0d",
+            "colId": "e348c1b4-9303-49c9-88e7-1a63b98fb000",
+            "containerId": "",
+            "name": "efetuarPagamento",
+            "url": "http://localhost:8080/pagamento/efetuar",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-05-01T18:05:11.740Z",
+            "modified": "2023-05-01T18:06:26.584Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "  {\n    \"codigoDoDebito\": 4323434,\n    \"cpfCnpj\": \"1234325454\",\n    \"metodoDePagamento\": \"dinheiro\",\n    \"numeroDoCartao\": 213431,\n    \"valorDoPagamento\": 434343134.00,\n    \"statusPagamento\": \"Pendente de Processamento\"\n  }",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "7447881e-36fb-4775-94c4-5177d3ca55be",
+            "colId": "e348c1b4-9303-49c9-88e7-1a63b98fb000",
+            "containerId": "",
+            "name": "listarPagamentos",
+            "url": "http://localhost:8080/pagamento/listar",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-05-01T18:05:55.556Z",
+            "modified": "2023-05-01T18:06:08.810Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "07ca7595-5bc1-4556-add6-2e574ff1a32b",
+            "colId": "e348c1b4-9303-49c9-88e7-1a63b98fb000",
+            "containerId": "",
+            "name": "atualizarPagamento",
+            "url": "http://localhost:8080/pagamento/atualizar/1",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2023-05-01T18:07:56.301Z",
+            "modified": "2023-05-01T18:12:32.119Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "Pendente de Processamento",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "5c353d61-dd62-4cf6-956d-c2339edcffa1",
+            "colId": "e348c1b4-9303-49c9-88e7-1a63b98fb000",
+            "containerId": "",
+            "name": "deletarPagamento",
+            "url": "http://localhost:8080/pagamento/deletar/1",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2023-05-01T18:10:41.124Z",
+            "modified": "2023-05-01T18:10:57.656Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "7356b772-e531-4794-b1ea-614dc0d9cd95",
+            "colId": "e348c1b4-9303-49c9-88e7-1a63b98fb000",
+            "containerId": "",
+            "name": "consultarPorCpfCnpj",
+            "url": "http://localhost:8080/pagamento/consultar/cpfCnpj/1234325454",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-05-01T18:12:55.387Z",
+            "modified": "2023-05-01T18:47:15.643Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "cpfCnpj",
+                        "value": "1234325454"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "91bb718e-256b-410b-aafe-c208377bb9a8",
+            "colId": "e348c1b4-9303-49c9-88e7-1a63b98fb000",
+            "containerId": "",
+            "name": "consultarPorCodigoDoDebito",
+            "url": "http://localhost:8080/pagamento/consultar/codigoDoDebito/4323434",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-05-01T18:18:12.187Z",
+            "modified": "2023-05-01T18:18:51.222Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "47ceef46-1c5b-445b-8c71-b7e36ded6d4c",
+            "colId": "e348c1b4-9303-49c9-88e7-1a63b98fb000",
+            "containerId": "",
+            "name": "consultarPorStatusPagamento",
+            "url": "http://localhost:8080/pagamento/consultar/statusPagamento/Pendente de Processamento",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2023-05-01T18:19:21.019Z",
+            "modified": "2023-05-01T18:19:39.302Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
