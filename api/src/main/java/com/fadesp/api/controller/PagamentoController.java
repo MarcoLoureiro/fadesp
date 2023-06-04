@@ -1,7 +1,9 @@
 package com.fadesp.api.controller;
 
+import com.fadesp.api.dto.PagamentoDTO;
 import com.fadesp.api.model.Pagamento;
 import com.fadesp.api.service.PagamentoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,16 +20,17 @@ public class PagamentoController {
     private PagamentoService pagamentoService;
 
     @GetMapping("/listar")
-    public ResponseEntity<List<Pagamento>> getListarPagamentos() {
+    public ResponseEntity<List<PagamentoDTO>> getListarPagamentos() {
         List<Pagamento> pagamentoList = pagamentoService.listarPagamento();
         if (pagamentoList.isEmpty())
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         else
-            return ResponseEntity.status(HttpStatus.OK).body(pagamentoList);
+            return ResponseEntity.status(HttpStatus.OK).body(pagamentoService.mapPagamentoListEntityToDtoList(pagamentoList));
     }
 
     @PostMapping("/efetuar")
-    public ResponseEntity<Pagamento> getEfetuarPagamento(@RequestBody Pagamento pagamento) {
+    public ResponseEntity<Pagamento> getEfetuarPagamento(@Valid @RequestBody PagamentoDTO pagamentoDTO) {
+        Pagamento pagamento = pagamentoService.mapPagamentoDtoToEntity(pagamentoDTO);
         this.pagamentoService.efetuarPagamento(pagamento);
         return ResponseEntity.status(HttpStatus.CREATED).body(pagamento);
     }

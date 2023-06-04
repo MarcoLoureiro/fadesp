@@ -1,5 +1,6 @@
 package com.fadesp.api.service;
 
+import com.fadesp.api.dto.PagamentoDTO;
 import com.fadesp.api.model.Pagamento;
 import com.fadesp.api.repository.PagamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PagamentoService {
@@ -76,6 +78,46 @@ public class PagamentoService {
 
     public Optional<Pagamento> consultarPagamentoPorId(Long id) {
         return this.pagamentoRepository.findById(id);
+    }
+
+
+    public Pagamento mapPagamentoDtoToEntity(PagamentoDTO pagamentoDTO) {
+        Pagamento pagamento = new Pagamento();
+
+        pagamento.setCodigoDoDebito(pagamentoDTO.getCodigoDoDebito());
+        pagamento.setCpfCnpj(pagamentoDTO.getCpfCnpj());
+        pagamento.setMetodoDePagamento(pagamentoDTO.getMetodoDePagamento());
+        pagamento.setNumeroDoCartao(pagamentoDTO.getNumeroDoCartao());
+        pagamento.setStatusPagamento(pagamentoDTO.getStatusPagamento());
+        pagamento.setValorDoPagamento(pagamentoDTO.getValorDoPagamento());
+
+        return pagamento;
+    }
+
+    public PagamentoDTO mapPagamentoEntityToDto(Pagamento pagamento){
+        return PagamentoDTO.builder()
+                .codigoDoDebito(pagamento.getCodigoDoDebito())
+                .cpfCnpj(pagamento.getCpfCnpj())
+                .metodoDePagamento(pagamento.getMetodoDePagamento())
+                .numeroDoCartao(pagamento.getNumeroDoCartao())
+                .valorDoPagamento(pagamento.getValorDoPagamento())
+                .statusPagamento(pagamento.getStatusPagamento())
+                .build();
+    }
+
+    public List<PagamentoDTO> mapPagamentoListEntityToDtoList(List<Pagamento> pagamentoList) {
+        List<PagamentoDTO> pagamentoDTOS = pagamentoList.stream()
+                .map(pagamento -> {
+                    PagamentoDTO pagamentoDTO = new PagamentoDTO();
+                      pagamentoDTO.setCodigoDoDebito(pagamento.getCodigoDoDebito());
+                      pagamentoDTO.setCpfCnpj(pagamento.getCpfCnpj());
+                      pagamentoDTO.setMetodoDePagamento(pagamento.getMetodoDePagamento());
+                      pagamentoDTO.setNumeroDoCartao(pagamento.getNumeroDoCartao());
+                      pagamentoDTO.setValorDoPagamento(pagamento.getValorDoPagamento());
+                      pagamentoDTO.setStatusPagamento(pagamento.getStatusPagamento());
+                    return pagamentoDTO;
+                }).collect(Collectors.toList());
+        return pagamentoDTOS;
     }
 
 }
